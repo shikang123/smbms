@@ -1,0 +1,64 @@
+.wrap .main .right .paging {
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    display: flex;
+    flex: 4;
+    padding: 0 25px;
+}
+
+.wrap .main .right .paging .tabbar {
+    flex: 3;
+}
+
+.wrap .main .right .paging .tabbar .one-page,
+.wrap .main .right .paging .tabbar .back,
+.wrap .main .right .paging .tabbar .next,
+.wrap .main .right .paging .tabbar .end-page,
+.wrap .main .right .paging .tabbar .page-index {
+    padding: 5px 8px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+.wrap .main .right .paging .tabbar .one-page:hover,
+.wrap .main .right .paging .tabbar .back:hover,
+.wrap .main .right .paging .tabbar .next:hover,
+.wrap .main .right .paging .tabbar .end-page:hover,
+.wrap .main .right .paging .tabbar .page-index:hover {
+    box-shadow: 0 0 2px rgba(100, 100, 100, .8);
+}
+
+.wrap .main .right .paging .tabbar .page-index {
+    width: 20px;
+}
+
+.wrap .main .right .paging .tabbar .inactive{
+    border: 1px solid rgba(100, 100, 100, .4);
+    color: rgba(100, 100, 100, .4);
+    cursor: default;
+}
+
+.wrap .main .right .paging .tabbar .inactive:hover{
+    box-shadow: none;
+}
+
+.wrap .main .right .paging .goto {
+    flex: 1;
+    text-align: right;
+}
+
+.wrap .main .right .paging .goto select {
+    width: 50px;
+    height: 25px;
+    border-radius: 5px;
+    outline: none;
+    margin-right: 5px;
+}
+
+.wrap .main .right .paging .goto button {
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+}

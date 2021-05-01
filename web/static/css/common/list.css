@@ -1,0 +1,105 @@
+
+.wrap .main .right {
+    flex: 1;
+}
+
+.wrap .main .right .nav {
+    position: relative;
+}
+
+.wrap .main .right .nav form label input,
+.wrap .main .right .nav form select {
+    width: 100px;
+    height: 25px;
+    margin: 35px 5px 20px 12px;
+    padding: 0 5px;
+    font-size: 12px;
+    border: 1px solid #666;
+    outline: none;
+    border-radius: 5px;
+    color: #666
+}
+
+.wrap .main .right .nav form input[type="submit"],
+.wrap .main .right .nav button {
+    width: 80px;
+    height: 28px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 2px #00a1f8;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+    background-image: linear-gradient(to bottom, #00a1f8, #76cfff, #00a1f8);
+}
+
+.wrap .main .right .nav form input[type="submit"]:hover,
+.wrap .main .right .nav button:hover {
+    box-shadow: 0 0 4px #00a1f8;
+}
+
+.wrap .main .right .nav button {
+    position: absolute;
+    top: 35px;
+    right: 25px;
+}
+
+.wrap .main .right .list {
+    margin: 8px;
+    border: 1px #bbb solid;
+}
+
+.wrap .main .right .list .th {
+    height: 35px;
+    line-height: 35px;
+    background-image: linear-gradient(to bottom, rgb(219, 216, 216), rgb(224, 224, 224), rgb(216, 214, 214), silver);
+    display: flex;
+    font-size: 14px;
+    font-family: "黑体", serif;
+}
+
+.wrap .main .right .list .th .line {
+    margin: 1px 0;
+    border-left: 1px white solid;
+}
+
+.wrap .main .right .list .th .td {
+    flex: 1;
+    text-align: center;
+}
+
+.wrap .main .right .list .tr {
+    height: 45px;
+    line-height: 45px;
+    display: flex;
+    font-size: 14px;
+}
+
+.wrap .main .right .list .tr:nth-child(2n+1) {
+    background-color: #eee;
+}
+
+.wrap .main .right .list .tr .td {
+    flex: 1;
+    text-align: center;
+}
+
+.wrap .main .right .list .tr .td img {
+    vertical-align: middle;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.wrap .main .right .list .tr .td img:nth-child(1) {
+    width: 18px;
+}
+
+.wrap .main .right .list .tr .td img:nth-child(2) {
+    width: 22px;
+}
+
+.wrap .main .right .list .tr .td img:nth-child(3) {
+    width: 20px;
+}
+

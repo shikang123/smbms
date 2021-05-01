@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ysk.mapper.RoleMapper">
+
+    <cache />
+
+    <select id="getRoleList" resultMap="Role-User">
+        select * from role
+        <where>
+            <if test="roleCode != null">
+                roleCode like concat('%', #{roleCode}, '%')
+            </if>
+            <if test="roleName != null">
+                and roleName like concat('%', #{roleName}, '%')
+            </if>
+        </where>
+        order by creationDate desc
+        limit #{startIndex}, #{pageSize}
+
+    </select>
+
+    <select id="getIdAndName" resultType="Role">
+        select id, roleName from role order by creationDate desc;
+    </select>
+
+    <select id="getCount" resultType="_int">
+        select count(1) from role
+        <where>
+            <if test="roleCode != null">
+                roleCode like concat('%', #{roleCode}, '%')
+            </if>
+            <if test="roleName != null">
+                and roleName like concat('%', #{roleName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="addRole" parameterType="Role">
+        insert into role (roleCode, roleName, createdBy, creationDate) values (#{roleCode},#{roleName},#{createdBy},#{creationDate})
+    </insert>
+
+    <select id="getRoleById" parameterType="_int" resultType="Role">
+        select * from role where id = #{id}
+    </select>
+
+    <update id="updRole" parameterType="Role">
+        update role set roleCode=#{roleCode}, roleName=#{roleName}, modifyBy = #{modifyBy}, modifyDate = #{modifyDate}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRoleById" parameterType="_int">
+        delete from role where id=#{id}
+    </delete>
+
+
+
+    <resultMap id="Role-User" type="Role">
+        <id property="id" column="id"/>
+        <collection property="users" javaType="list" ofType="User" column="id" select="getUsers"/>
+    </resultMap>
+    <select id="getUsers" resultType="User" parameterType="_int">
+        select * from user where userRole = #{id}
+    </select>
+
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ysk.mapper.BillMapper">
+
+    <select id="getBillCount" resultType="_int">
+        select count(1) count from bill
+        <where>
+            <if test="billCode != null">
+                billCode like concat('%', #{billCode}, '%')
+            </if>
+            <if test="productName != null">
+                and productName like concat('%', #{productName}, '%')
+            </if>
+            <if test="providerId != null">
+                and providerId = #{providerId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getBillList" resultMap="Bill-provider">
+        select * from bill
+        <where>
+            <if test="billCode != null">
+                billCode like concat('%', #{billCode}, '%')
+            </if>
+            <if test="productName != null">
+                and productName like concat('%', #{productName}, '%')
+            </if>
+            <if test="providerId != null and providerId != 0">
+                and providerId = #{providerId}
+            </if>
+        </where>
+        order by creationDate desc
+        limit #{startIndex}, #{pageSize}
+    </select>
+
+    <delete id="deleteBillById">
+        delete from bill where id = #{billId}
+    </delete>
+
+    <insert id="addBill" parameterType="Bill">
+        insert into bill
+        (billCode, productName, productUnit, productCount, totalPrice, isPayment, createdBy, creationDate, providerId)
+        values (#{billCode}, #{productName}, #{productUnit}, #{productCount}, #{totalPrice}, #{isPayment}, #{createdBy}, #{creationDate}, #{provider.id})
+    </insert>
+
+    <select id="getBillById" resultMap="Bill-provider" parameterType="_int">
+        select * from bill where id=#{billId}
+    </select>
+
+    <update id="updBill" parameterType="Bill">
+        update bill set billCode=#{billCode}, productName=#{productName}, productUnit=#{productUnit}, productCount=#{productCount}, totalPrice=#{totalPrice}, isPayment=#{isPayment},  modifyBy=#{modifyBy}, modifyDate=#{modifyDate}, providerId=#{provider.id}
+        where id=#{id}
+    </update>
+
+
+    <resultMap id="Bill-provider" type="Bill">
+        <association property="provider" javaType="Provider" column="providerId" select="getProvider"/>
+    </resultMap>
+    <select id="getProvider" resultType="Provider">
+        select * from provider where id = #{providerId}
+    </select>
+
+</mapper>

@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* 头部样式 */
+.wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.wrap .head{
+    height: 55px;
+    line-height: 55px;
+    padding-left: 25px;
+    background-image: linear-gradient(to bottom, #00a1f8, #76cfff);
+    position: relative;
+    box-shadow: 0 1px 1px rgba(100,100,100,.6);
+}
+.wrap .head img{
+    width: 30px;
+    padding: 8px;
+    vertical-align: middle;
+}
+.wrap .head span.title {
+    height: 50px;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 5px;
+    left: 80px;
+}
+.wrap .head span.right {
+    position: absolute;
+    top: 0;
+    right: 45px;
+    font-size: 14px;
+    color: white;
+}
+.wrap .head span.right i {
+    color: green;
+    font-size: 12px;
+    font-style: normal;
+}
+.wrap .head span.right a{
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    margin-left: 20px;
+}
+.wrap .head span.right a:link{
+    color: white;
+    text-decoration: none;
+}
+.wrap .head span.right a:hover{
+    color: rgba(255,255,255,.8);
+}
+/* 主体样式 */
+.wrap .main{
+    flex: 1;
+    display: flex;
+}
+/* 左侧栏 */
+.wrap .main .left{
+    width: 120px;
+    height: 100%;
+    text-align: center;
+    box-shadow: 1px 0px 1px rgba(100, 100, 100, .6);
+}
+.wrap .main .left div.ul,
+.wrap .main .left div.li{
+    padding: 8px;
+    font-size: 14px;
+}
+.wrap .main .left div.ul{
+    background-image: linear-gradient(to bottom, #00a1f8, #76cfff, #00a1f8);
+    color: white;
+    font-size: 16px;
+}
+.wrap .main .left div.li{
+    cursor: pointer;
+    color: #666;
+}
+.wrap .main .left div.li:hover{
+    background-color: #41bafc;
+    color: white;
+}
+.wrap .main .left div.active{
+    background-color: #41bafc;
+    color: white;
+}
+.wrap .main .left div.line{
+    border-bottom: 1px solid rgba(100, 100, 100, .6);
+}
+
+
+/* 底部 */
+.wrap .foot{
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    background-image: linear-gradient(to bottom, #00a1f8, #76cfff);
+}
+.wrap .foot span{
+    margin-right: 10px;
+}
+.wrap .foot a{
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    margin-right: 5px;
+}
+.wrap .foot a:hover{
+    text-decoration: underline;
+}

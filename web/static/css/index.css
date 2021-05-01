@@ -1,0 +1,15 @@
+/* 右侧部分 */
+.wrap .main .right{
+    float: left;
+    flex: 1;
+}
+.wrap .main .right .hello {
+    margin: 40px 0 0 80px;
+}
+.wrap .main .right .hello img{
+    vertical-align: middle;
+}
+.wrap .main .right .hello span i{
+    font-style: normal;
+    color: green;
+}

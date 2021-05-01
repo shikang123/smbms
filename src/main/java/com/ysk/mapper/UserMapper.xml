@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysk.mapper.UserMapper">
+
+    <cache />
+
+    <select id="getUserById" parameterType="int" resultMap="User-Role">
+        select * from user where id = #{uid}
+    </select>
+
+    <select id="getUserByUsernameAndPwd" resultMap = "User-Role">
+        select * from user where userCode = #{uname} and userPassword = #{pwd}
+    </select>
+
+    <select id="getUserCount" resultType="int">
+        select count(1) count from user
+        <where>
+            <if test="userName != null">
+                userName like concat('%', #{userName}, '%')
+            </if>
+            <if test="userRole != null">
+                and userRole = #{userRole}
+            </if>
+        </where>
+    </select>
+
+    <select id="getUserList" resultMap="User-Role">
+        select * from user
+        <where>
+            <if test="userName != null">
+                userName like concat('%', #{userName}, '%')
+            </if>
+            <if test="userRole != null">
+                and userRole = #{userRole}
+            </if>
+        </where>
+        order by id desc
+        limit #{startIndex}, #{pageSize}
+    </select>
+
+    <insert id="add" parameterType="User">
+        insert into user
+        (userCode, userName, userPassword, gender, birthday, phone, address, userRole, createdBy, creationDate)
+        values
+        (#{userCode}, #{userName}, #{userPassword}, #{gender}, #{birthday}, #{phone}, #{address}, #{role.id}, #{createdBy}, #{creationDate})
+    </insert>
+
+    <delete id="delUserById" parameterType="_int">
+        delete from user
+        where id = #{uid}
+    </delete>
+
+    <update id="updateUser" parameterType="User">
+        update user
+        set userCode=#{userCode},
+            userName=#{userName},
+            userPassword=#{userPassword},
+            gender=#{gender},
+            birthday=#{birthday},
+            phone=#{phone},
+            address=#{address},
+            userRole=#{role.id},
+            modifyBy=#{modifyBy},
+            modifyDate=#{modifyDate}
+        where id = #{id}
+    </update>
+
+    <update id="updatePassword">
+        update user
+        set userPassword = #{password}
+        where id = #{uid}
+    </update>
+
+
+    <resultMap id="User-Role" type="User">
+        <association property="role" javaType="Role" column="userRole" select="getRoleById"/>
+    </resultMap>
+    <select id="getRoleById" resultType="Role">
+        select * from Role where id = #{userRole}
+    </select>
+
+</mapper>

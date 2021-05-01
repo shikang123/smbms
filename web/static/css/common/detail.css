@@ -1,0 +1,39 @@
+.wrap .main .right{
+    width: 400px;
+    margin: 0 auto;
+    padding: 15px;
+    font-family: "宋体", serif;
+}
+.wrap .main .right .title{
+    color: rgb(17, 62, 221);
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgb(17, 82, 221);
+    padding: 5px;
+    font-size: 18px;
+}
+
+.wrap .main .right .detail div{
+    padding: 10px;
+    color:rgb(63, 62, 62);
+    font-size: 16px;
+}
+.wrap .main .right .detail button {
+    width: 150px;
+    height: 25px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgb(63, 62, 62);
+    padding: 0 5px;
+    color: rgb(63, 62, 62);
+}
+.wrap .main .right .detail button:hover {
+    background-color: rgb(17, 62, 221);
+    color: white;
+    border: none;
+    box-shadow: 0 0 2px rgb(17, 62, 221);
+}
+
+.wrap .main .right .detail > div > label{
+    display: inline-block;
+    width: 110px;
+}

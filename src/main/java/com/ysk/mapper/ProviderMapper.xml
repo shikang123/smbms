@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ysk.mapper.ProviderMapper">
+
+    <insert id="addProvider" parameterType="Provider">
+        insert into provider
+        (proCode, proName, proDesc, proContact, proPhone, proFax, proAddress, createdBy, creationDate, modifyDate, modifyBy)
+        values (#{proCode}, #{proName}, #{proDesc}, #{proContact}, #{proPhone}, #{proFax}, #{proAddress}, #{createdBy}, #{creationDate}, #{modifyDate}, #{modifyBy})
+    </insert>
+
+    <update id="updProvider" parameterType="Provider">
+        update provider set proCode=#{proCode}, proName=#{proName}, proContact=#{proContact}, proPhone=#{proPhone}, proAddress=#{proAddress}, modifyBy=#{modifyBy}, modifyDate=#{modifyDate}
+        where id=#{id}
+    </update>
+
+    <select id="getProviderById" parameterType="_int" resultType="Provider">
+        select * from provider where id=#{proId}
+    </select>
+
+    <select id="getProCount" resultType="_int">
+        select count(*) from provider
+        <where>
+            <if test="proName != null">
+                proName like concat('%', #{proName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getProList" resultMap="Provider-Bill">
+        select * from provider
+        <where>
+            <if test="proName != null">
+                proName like concat('%', #{proName}, '%')
+            </if>
+        </where>
+        order by creationDate desc
+        limit #{startIndex}, #{pageSize}
+    </select>
+
+    <select id="getIdAndName" resultType="Provider">
+        select id, proName from provider;
+    </select>
+
+    <delete id="delProviderById" parameterType="_int">
+        delete from provider where id=#{proId}
+    </delete>
+
+
+    <resultMap id="Provider-Bill" type="Provider">
+        <id property="id" column="id"/>
+        <collection property="bills" javaType="list" ofType="Bill" column="id" select="getBills" />
+    </resultMap>
+    <select id="getBills" resultType="Bill" parameterType="_int">
+        select * from bill where providerId = #{id}
+    </select>
+</mapper>
